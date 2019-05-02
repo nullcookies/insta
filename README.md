@@ -1,26 +1,84 @@
-# Watermark Bot
-A simple telegram bot to add watermark to images
+# Bitme77_bot - chat bot
+It is repository for chat bot: [@Bitme77_bot](https://t.me/Bitme77_bot)
 
-This is an example bot written on Lumen (micro framework based on laravel) and uses php-telegram-bot to show you how easily you can create a full feature bot using php-telegram-bot.
+## What it is?
+This repository can be imported to [Bots.Business](https://bots.business) as a worked chat bot.
 
-# Installation is easy:
-1- Download the repo with git or zip.
+[Bots.Business](https://bots.business) - it is probably the first CBPaaS - Chat Bot Platform as a Service.
 
-2- Run composer update in the project directory to download dependencies.
+A CBPaaS is a cloud-based platform that enables developers to create chatbots without needing to build backend infrastructure.
 
-3- Edit .env file at the root with your bot details (make sure you change the TELEGRAM_REQUEST_URL to your own address).
+## Create your own bot for Telegram from this Git repo
 
-4- Open vendor/longman/telegram-bot/ directory and import structure.sql to your database.
+How to create bot?
+1. Create bot with [@BotFather](https://telegram.me/BotFather) and take Secret Token
+2. Create bot in App and add Secret Token
+3. Add Public Key from App as [Deploy key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys) with read access (and write access for bot exporting if you need it)
+4. Do import for this git repo
 
-5- In your browser run https://url-to-script-root/public/set-webhook
+Now you can talk with yours new Telegram Bot
 
-6- Now in your telegram client open your bot page and start using it.
+See [more](https://help.bots.business/getting-started)
 
-# How it works
-Simply send an image or forward it to the bot and it ask you for the watermark string to be added to the image, after sending the string it sends you the edited version of the image.
+## Commands - in commands folder
+File name - it is command name (Bot it can be rewritten in command description)
 
-# Notes
+Command can have: `name`, `help`, `aliases` (second names), `answer`, `keyboard`, `scnarios` (for simple logic) and other options.
 
-1- This is just an example bot to let you see how you can use php-telegram-bot library not a ready to use script.
+### Command description
+It is file header:
 
-2- You are allowed to edit any thing in this project and use it in your free or commercial projects, but you may not sell it to anyone without changing its functionallity, or uploading same code on your own repo (If you want work on it simply fork the project)
+    /*CMD
+      command: /test
+      help: this is help for ccommand
+      need_reply: [ true or false here ]
+      auto_retry_time: [ time in sec ]
+      answer: it is example answer for /test command
+      keyboard: button1, button2
+      aliases: /test2, /test3
+    CMD*/
+
+See [more](https://help.bots.business/commands)
+
+### Command body
+It is command code in JavaScript.
+Use Bot Java Script for logic in command.
+
+For example:
+> Bot.sendMessage(2+2);
+
+See [more](https://help.bots.business/scenarios-and-bjs)
+
+
+## Libraries - in libs folder
+You can store common code in the libs folder. File name - it is library name.
+
+For example code in myLib.js:
+
+    function hello(){ Bot.sendMessage("Hello from lib!") }
+    function goodbye(name){ Bot.sendMessage("Goodbye, " + name) }
+
+    publish({
+      sayHello: hello,
+      sayGoodbyeTo: goodbye
+    })
+
+then you can run in any bot's command:
+
+    Libs.myLib.hello()
+    Libs.myLib.sayGoodbyeTo("Alice")
+
+See [more](https://help.bots.business/git/library)
+
+## Other bots example
+See other bots examples in the [github](https://github.com/bots-business?utf8=✓&tab=repositories&q=&type=public&language=javascript) or in the [Bot Store](https://bots.business/)
+
+
+## Other help
+[Help.bots.business](https://help.bots.business)
+
+## API
+See [API](https://api.bots.business/docs#/docs/summary)
+
+
+![](https://bots.business/images/web-logo.png)
